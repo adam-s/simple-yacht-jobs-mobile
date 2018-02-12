@@ -1,7 +1,13 @@
-#  SimpleYachtJobsMobile
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+#  Simple Yacht Jobs Mobile
 
 * Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
+
+## TASKS
+1. Bottom tab navigation for job postings and resumes.
+2. Flat list for job postings
+3. Item view for job post
+4. Flat list for resumes
+5. Item view for resume
 
 ## :arrow_up: How to Setup
 

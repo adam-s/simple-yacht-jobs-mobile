@@ -1,12 +1,25 @@
 import React from 'react';
-import { View } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import SearchJobsView from '../Components/SearchJobsView';
 
-export default class SearchJobsScreen extends React.Component {
+class SearchJobsScreen extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired
+  }
+  static navigationOptions = {
+    title: 'Search Jobs'
+  }
   render() {
     return (
-      <SearchJobsView />
+      <SearchJobsView {...this.props} />
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {};
+}
+
+export default connect(mapStateToProps)(SearchJobsScreen);

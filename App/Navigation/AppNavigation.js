@@ -1,24 +1,35 @@
 import React from 'react';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import LaunchScreen from '../Containers/LaunchScreen'
+import LaunchScreen from '../Containers/LaunchScreen';
+import JobDetailScreen from '../Containers/JobDetailScreen';
+import ResumeDetailScreen from '../Containers/ResumeDetailScreen';
 import SearchJobsScreen from '../Containers/SearchJobsScreen';
 import SearchResumesScreen from '../Containers/SearchResumesScreen';
 
 import styles from './Styles/NavigationStyles'
 
-// Manifest of possible screens
+const JobsStack = StackNavigator({
+  SearchJobsScreen: { screen: SearchJobsScreen },
+  JobDetailScreen: { screen: JobDetailScreen }
+});
+
+const ResumesStack = StackNavigator({
+  SearchResumesScreen: { screen: SearchResumesScreen },
+  ResumeDetailScreen: { screen: ResumeDetailScreen }
+})
+
 const PrimaryNav = TabNavigator({
-  SearchJobsScreen: {
-    screen: SearchJobsScreen,
+  Jobs: {
+    screen: JobsStack,
     navigationOptions: () => ({
-      title: 'Jobs'
+      title: 'Search Jobs'
     })
   },
-  SearchResumesScreen: {
-    screen: SearchResumesScreen,
+  Resumes: {
+    screen: ResumesStack,
     navigationOptions: () => ({
-      title: 'Resumes'
+      title: 'Search Resumes'
     })
   }
 }, {
@@ -27,9 +38,9 @@ const PrimaryNav = TabNavigator({
       const { routeName } = navigation.state;
 
       let iconName;
-      if (routeName === 'SearchJobsScreen') {
+      if (routeName === 'Jobs') {
         iconName = `ios-briefcase${focused ? '' : '-outline'}`;
-      } else if (routeName === 'SearchResumesScreen') {
+      } else if (routeName === 'Resumes') {
         iconName = `ios-paper${focused ? '' : '-outline'}`;
       }
 
@@ -38,13 +49,13 @@ const PrimaryNav = TabNavigator({
       return <Ionicons name={iconName} size={25} color={tintColor} />;
     }
   }),
-  key: 'SearchJobsScreen',
+  key: 'Resumes',
   tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
   animationEnabled: true,
   swipeEnabled: true,
   headerMode: 'none',
-  initialRouteName: 'SearchJobsScreen',
+  initialRouteName: 'Resumes',
   tabBarOptions: {
     activeTintColor: 'tomato',
     inactiveTintColor: 'grey'

@@ -2,32 +2,20 @@ import React from 'react';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LaunchScreen from '../Containers/LaunchScreen';
-import JobDetailScreen from '../Containers/JobDetailScreen';
-import ResumeDetailScreen from '../Containers/ResumeDetailScreen';
-import SearchJobsScreen from '../Containers/SearchJobsScreen';
-import SearchResumesScreen from '../Containers/SearchResumesScreen';
+import JobsStackNavigator from './JobsStackNavigator';
+import ResumesStackNavigator from './ResumesStackNavigator';
 
 import styles from './Styles/NavigationStyles'
 
-const JobsStack = StackNavigator({
-  SearchJobsScreen: { screen: SearchJobsScreen },
-  JobDetailScreen: { screen: JobDetailScreen }
-});
-
-const ResumesStack = StackNavigator({
-  SearchResumesScreen: { screen: SearchResumesScreen },
-  ResumeDetailScreen: { screen: ResumeDetailScreen }
-})
-
 const PrimaryNav = TabNavigator({
   Jobs: {
-    screen: JobsStack,
+    screen: JobsStackNavigator,
     navigationOptions: () => ({
       title: 'Search Jobs'
     })
   },
   Resumes: {
-    screen: ResumesStack,
+    screen: ResumesStackNavigator,
     navigationOptions: () => ({
       title: 'Search Resumes'
     })

@@ -4,19 +4,24 @@ import { connect } from 'react-redux';
 
 import SearchResumesView from '../Components/SearchResumesView'
 
+const propTypes = {
+  navigation: PropTypes.object.isRequired
+}
+
+const navigationOptions = {
+  title: 'Search Resumes'
+}
+
 class SearchResumesScreen extends React.Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired
-  }
-  static navigationOptions = {
-    title: 'Search Resumes'
-  }
   render() {
     return (
       <SearchResumesView {...this.props} />
     );
   }
 }
+
+SearchResumesScreen.navigationOptions = navigationOptions;
+SearchResumesScreen.propTypes = propTypes;
 
 const mapStateToProps = (state) => {
   return {};

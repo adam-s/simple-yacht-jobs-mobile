@@ -5,10 +5,11 @@ import { Button, View, Text } from 'react-native';
 // Styles
 import styles from './Styles/SearchJobsViewStyle';
 
+const propTypes = {
+  navigation: PropTypes.object.isRequired
+}
+
 class SearchJobsView extends React.Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired
-  }
   handlePress = () => {
     this.props.navigation.navigate('JobDetailScreen');
   }
@@ -24,5 +25,7 @@ class SearchJobsView extends React.Component {
     )
   }
 }
+
+SearchJobsView.propTypes = propTypes;
 
 export default SearchJobsView;

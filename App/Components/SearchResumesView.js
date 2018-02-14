@@ -5,10 +5,11 @@ import { Button, View, Text } from 'react-native';
 // Styles
 import styles from './Styles/SearchResumesViewStyle';
 
+const propTypes = {
+  navigation: PropTypes.object.isRequired
+}
+
 class SearchResumesView extends React.Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired
-  }
   handlePress = () => {
     this.props.navigation.navigate('ResumeDetailScreen')
   }
@@ -24,5 +25,7 @@ class SearchResumesView extends React.Component {
     )
   }
 }
+
+SearchResumesView.propTypes = propTypes;
 
 export default SearchResumesView;

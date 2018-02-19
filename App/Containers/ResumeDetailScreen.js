@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import ResumeDetailView from '../Components/ResumeDetailView';
+import CrewActions from '../Redux/CrewRedux';
 
 const navigationOptions = ({ navigation }) => {
   return {
@@ -11,7 +13,7 @@ const navigationOptions = ({ navigation }) => {
 class ResumeDetailScreen extends React.Component {
   render() {
     return (
-      <ResumeDetailView />
+      <ResumeDetailView {...this.props} />
     );
   }
 }

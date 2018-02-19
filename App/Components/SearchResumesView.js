@@ -14,13 +14,18 @@ class SearchResumesView extends React.Component {
     this.props.navigation.navigate('ResumeDetailScreen')
   }
   render() {
+    console.log(this.props);
+    const { records } = this.props
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.container}>This is a search resume view</Text>
-        <Button
-          title={"Go to details"}
-          onPress={this.handlePress}
-        />
+        <Text>This is a search resume view</Text>
+        {records.map((record) => {
+          return (
+            <View key={record._id}>
+              <Text>{record.title}</Text>
+            </View>
+          );
+        })}
       </View>
     )
   }

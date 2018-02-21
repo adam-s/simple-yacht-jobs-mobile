@@ -15,7 +15,6 @@ const navigationOptions = {
 
 class SearchResumesScreen extends React.Component {
   componentDidMount() {
-    console.log(this);
     this.props.fetchCrewIndex();
   }
 

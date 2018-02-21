@@ -4,7 +4,6 @@ import apisauce from 'apisauce';
 const endpoint = 'api/crew-listings'
 
 const create = (baseURL = Secrets.API_URL) => {
-  console.log('BaseURL: ', Secrets);
   const api = apisauce.create({
     baseURL,
     timeout: 10000

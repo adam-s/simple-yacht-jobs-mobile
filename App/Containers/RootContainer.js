@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { View, StatusBar } from 'react-native'
+import { Container, StyleProvider } from 'native-base';
 import ReduxNavigation from '../Navigation/ReduxNavigation'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
 import ReduxPersist from '../Config/ReduxPersist'
 
-// Styles
-import styles from './Styles/RootContainerStyles'
+import getTheme from '../../native-base-theme/components';
+import commonColor from '../../native-base-theme/variables/commonColor';
 
 class RootContainer extends Component {
   componentDidMount () {
@@ -18,10 +19,12 @@ class RootContainer extends Component {
 
   render () {
     return (
-      <View style={styles.applicationView}>
-        <StatusBar barStyle='light-content' />
-        <ReduxNavigation />
-      </View>
+      <StyleProvider style={getTheme(commonColor)}>
+        <Container>
+          <StatusBar barStyle='light-content' />
+          <ReduxNavigation />
+        </Container>
+      </StyleProvider>
     )
   }
 }

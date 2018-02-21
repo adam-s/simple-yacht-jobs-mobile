@@ -3,7 +3,6 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import CrewApi from '../Services/CrewApi';
 import CrewActions, { CrewTypes } from '../Redux/CrewRedux';
 
-console.log('crewApi: ', CrewApi);
 const crewApi = CrewApi.create();
 
 function * fetchCrewIndex() {

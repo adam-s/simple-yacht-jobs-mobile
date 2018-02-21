@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, View, Text } from 'react-native';
+import { Content, Text, Card } from 'native-base';
 
-// Styles
-import styles from './Styles/SearchResumesViewStyle';
+import ResumeCard from './ResumeCard';
 
 const propTypes = {
   navigation: PropTypes.object.isRequired
@@ -14,19 +13,17 @@ class SearchResumesView extends React.Component {
     this.props.navigation.navigate('ResumeDetailScreen')
   }
   render() {
-    console.log(this.props);
     const { records } = this.props
     return (
-      <View style={styles.mainContainer}>
+      <Content padder>
         <Text>This is a search resume view</Text>
-        {records.map((record) => {
-          return (
-            <View key={record._id}>
-              <Text>{record.title}</Text>
-            </View>
-          );
-        })}
-      </View>
+        {records.map((record, i) => (
+          <ResumeCard
+            key={record._id}
+            record={record}
+          />
+        ))}
+      </Content>
     )
   }
 }

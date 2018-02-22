@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Content, Text, Card } from 'native-base';
 
-import ResumeCard from './ResumeCard';
+import ResumeList from './ResumeList';
 
 const propTypes = {
   navigation: PropTypes.object.isRequired
@@ -14,15 +14,10 @@ class SearchResumesView extends React.Component {
   }
   render() {
     const { records } = this.props
+    console.log(records);
     return (
-      <Content padder>
-        <Text>This is a search resume view</Text>
-        {records.map((record, i) => (
-          <ResumeCard
-            key={record._id}
-            record={record}
-          />
-        ))}
+      <Content>
+        <ResumeList records={records}/>
       </Content>
     )
   }

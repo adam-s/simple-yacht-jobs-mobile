@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem, Text, Body, Right, Icon, View } from 'native-base';
+import { Button, List, ListItem, Text, Body, Right, Icon, View } from 'native-base';
 
 import { formatDate } from '../Lib/DateUtils';
 
@@ -28,7 +28,7 @@ class ResumeList extends React.Component {
               </View>
             </Body>
             <Right>
-              <Icon name="arrow-forward" />
+              <Icon name="ios-arrow-forward" />
             </Right>
           </ListItem>
           ))}

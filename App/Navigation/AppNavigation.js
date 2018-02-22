@@ -2,20 +2,20 @@ import React from 'react';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LaunchScreen from '../Containers/LaunchScreen';
-import JobsStackNavigator from './JobsStackNavigator';
-import ResumesStackNavigator from './ResumesStackNavigator';
+import JobStackNavigator from './JobStackNavigator';
+import ResumeStackNavigator from './ResumeStackNavigator';
 
 import styles from './Styles/NavigationStyles'
 
 const PrimaryNav = TabNavigator({
   Jobs: {
-    screen: JobsStackNavigator,
+    screen: JobStackNavigator,
     navigationOptions: () => ({
       title: 'Search Jobs'
     })
   },
   Resumes: {
-    screen: ResumesStackNavigator,
+    screen: ResumeStackNavigator,
     navigationOptions: () => ({
       title: 'Search Resumes'
     })

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import SearchJobsView from '../Components/SearchJobsView';
+import JobSearchView from '../Components/JobSearchView';
 
 const propTypes = {
   navigation: PropTypes.object.isRequired
@@ -12,19 +12,19 @@ const navigationOptions = {
   title: 'Search Jobs'
 }
 
-class SearchJobsScreen extends React.Component {
+class JobSearchScreen extends React.Component {
   render() {
     return (
-      <SearchJobsView {...this.props} />
+      <JobSearchView {...this.props} />
     );
   }
 }
 
-SearchJobsScreen.propTypes = propTypes;
-SearchJobsScreen.navigationOptions = navigationOptions;
+JobSearchScreen.propTypes = propTypes;
+JobSearchScreen.navigationOptions = navigationOptions;
 
 const mapStateToProps = (state) => {
   return {};
 }
 
-export default connect(mapStateToProps)(SearchJobsScreen);
+export default connect(mapStateToProps)(JobSearchScreen);

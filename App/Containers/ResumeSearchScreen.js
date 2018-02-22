@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import SearchResumesView from '../Components/SearchResumesView'
+import ResumeSearchView from '../Components/ResumeSearchView'
 import CrewActions from "../Redux/CrewRedux";
 
 const propTypes = {
@@ -13,20 +13,20 @@ const navigationOptions = {
   title: 'Search Resumes'
 }
 
-class SearchResumesScreen extends React.Component {
+class ResumeSearchScreen extends React.Component {
   componentDidMount() {
     this.props.fetchCrewIndex();
   }
 
   render() {
     return (
-      <SearchResumesView {...this.props} />
+      <ResumeSearchView {...this.props} />
     );
   }
 }
 
-SearchResumesScreen.navigationOptions = navigationOptions;
-SearchResumesScreen.propTypes = propTypes;
+ResumeSearchScreen.navigationOptions = navigationOptions;
+ResumeSearchScreen.propTypes = propTypes;
 
 const mapStateToProps = (state) => {
   return {
@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResumesScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ResumeSearchScreen);

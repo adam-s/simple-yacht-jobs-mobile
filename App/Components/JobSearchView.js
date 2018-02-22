@@ -9,7 +9,7 @@ const propTypes = {
   navigation: PropTypes.object.isRequired
 }
 
-class SearchJobsView extends React.Component {
+class JobSearchView extends React.Component {
   handlePress = () => {
     this.props.navigation.navigate('JobDetailScreen');
   }
@@ -26,6 +26,6 @@ class SearchJobsView extends React.Component {
   }
 }
 
-SearchJobsView.propTypes = propTypes;
+JobSearchView.propTypes = propTypes;
 
-export default SearchJobsView;
+export default JobSearchView;

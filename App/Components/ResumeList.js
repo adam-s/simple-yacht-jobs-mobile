@@ -5,14 +5,30 @@ import { Button, List, ListItem, Text, Body, Right, Icon, View } from 'native-ba
 import { formatDate } from '../Lib/DateUtils';
 
 class ResumeList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openDetail: false
+    }
+  }
+
   handleListItemOnPress(record) {
-    this.props.navigation.navigate('ResumeDetailScreen', { id: record._id });
+    this.props.navigation.navigate('ResumeDetailScreen', { record });
+  }
+
+  componentDidUpdate() {
+    const { records } = this.props;
+
+    if (records.length && !this.state.openDetail) {
+      this.handleListItemOnPress(records[0]);
+      this.setState({ openDetail: true });
+    }
   }
 
   render() {
     const { records } = this.props;
     return (
-      <List style={{backgroundColor: 'white'}}>
+      <List>
         { records.map(record => (
           <ListItem
             key={record._id}

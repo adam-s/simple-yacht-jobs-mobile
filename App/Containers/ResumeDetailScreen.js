@@ -11,6 +11,9 @@ const navigationOptions = ({ navigation }) => {
 }
 
 class ResumeDetailScreen extends React.Component {
+  componentWillMount() {
+    const { record } = this.props.navigation.state.params;
+  }
   render() {
     return (
       <ResumeDetailView {...this.props} />

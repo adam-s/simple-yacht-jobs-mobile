@@ -8,16 +8,16 @@ import ResumeStackNavigator from './ResumeStackNavigator';
 import styles from './Styles/NavigationStyles'
 
 const PrimaryNav = TabNavigator({
-  Jobs: {
-    screen: JobStackNavigator,
-    navigationOptions: () => ({
-      title: 'Search Jobs'
-    })
-  },
   Resumes: {
     screen: ResumeStackNavigator,
     navigationOptions: () => ({
       title: 'Search Resumes'
+    })
+  },
+  Jobs: {
+    screen: JobStackNavigator,
+    navigationOptions: () => ({
+      title: 'Search Jobs'
     })
   }
 }, {

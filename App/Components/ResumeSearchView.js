@@ -12,7 +12,7 @@ class ResumeSearchView extends React.Component {
   render() {
     const { records, navigation } = this.props
     return (
-      <Content>
+      <Content backgroundWhite>
         <ResumeList records={records} navigation={navigation}/>
       </Content>
     )

@@ -37,13 +37,13 @@ const PrimaryNav = TabNavigator({
       return <Ionicons name={iconName} size={25} color={tintColor} />;
     }
   }),
-  key: 'Resumes',
+  key: 'Jobs',
   tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
   animationEnabled: true,
   swipeEnabled: true,
   headerMode: 'none',
-  initialRouteName: 'Resumes',
+  initialRouteName: 'Jobs',
   tabBarOptions: {
     activeTintColor: 'tomato',
     inactiveTintColor: 'grey'

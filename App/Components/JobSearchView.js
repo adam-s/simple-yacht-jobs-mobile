@@ -1,27 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, View, Text } from 'react-native';
+import { Content, Text, Card } from 'native-base';
 
-// Styles
-import styles from './Styles/SearchJobsViewStyle';
+import JobList from './JobList';
 
 const propTypes = {
   navigation: PropTypes.object.isRequired
 }
 
 class JobSearchView extends React.Component {
-  handlePress = () => {
-    this.props.navigation.navigate('JobDetailScreen');
-  }
   render() {
+    const { records, navigation } = this.props;
     return (
-      <View style={styles.mainContainer}>
-        <Text style={styles.mainContainer}>This is a sesarch jobs view</Text>
-        <Button
-          title={"Go to details"}
-          onPress={this.handlePress}
-        />
-      </View>
+      <Content backgroundWhite>
+        <JobList records={records} navigation={navigation}/>
+      </Content>
     )
   }
 }

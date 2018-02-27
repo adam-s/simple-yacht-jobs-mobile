@@ -1,6 +1,7 @@
 import React from 'react';
 
 import JobDetailView from '../Components/JobDetailView.js';
+import JobsActions from '../Redux/JobsRedux';
 
 const navigationOptions = ({ navigation }) => {
   return {
@@ -9,9 +10,12 @@ const navigationOptions = ({ navigation }) => {
 }
 
 class JobDetailScreen extends React.Component {
+  componentWillMount() {
+    const { record } = this.props.navigation.state.params;
+  }
   render() {
     return (
-      <JobDetailView />
+      <JobDetailView {...this.props} />
     );
   }
 }

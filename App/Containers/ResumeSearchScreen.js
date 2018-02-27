@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import ResumeSearchView from '../Components/ResumeSearchView'
-import CrewActions from "../Redux/CrewRedux";
+import CrewActions from '../Redux/CrewRedux';
 
 const propTypes = {
   navigation: PropTypes.object.isRequired

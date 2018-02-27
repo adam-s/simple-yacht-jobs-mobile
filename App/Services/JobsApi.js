@@ -1,7 +1,7 @@
 import Secrets from 'react-native-config'
 import apisauce from 'apisauce';
 
-const endpoint = 'api/crew-listings'
+const endpoint = 'api/job-listings'
 
 const create = (baseURL = Secrets.API_URL) => {
   const api = apisauce.create({
@@ -9,10 +9,10 @@ const create = (baseURL = Secrets.API_URL) => {
     timeout: 32000
   });
 
-  const fetchCrewIndex = () => api.get(endpoint);
+  const fetchJobsIndex = () => api.get(endpoint);
 
   return {
-    fetchCrewIndex
+    fetchJobsIndex
   }
 }
 

@@ -13,6 +13,7 @@ import { GithubTypes } from '../Redux/GithubRedux'
 import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
 import { crewSagas } from './CrewSagas';
+import { jobsSagas } from './JobsSagas';
 
 /* ------------- API ------------- */
 
@@ -25,6 +26,7 @@ const api = DebugConfig.useFixtures ? FixtureAPI : API.create()
 export default function * root () {
   yield all([
     fork(crewSagas),
+    fork(jobsSagas),
     takeLatest(StartupTypes.STARTUP, startup),
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)
   ])

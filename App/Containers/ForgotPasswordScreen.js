@@ -1,13 +1,21 @@
 import React from 'react';
-import { View, Text } from 'native-base';
+import { NavigationActions } from 'react-navigation';
+
+import { Text, Button } from 'native-base';
+import ForgotPasswordForm from '../Components/ForgotPasswordForm';
 
 class ForgotPasswordScreen extends React.Component {
+  static navigationOptions = ({ navigation: { dismiss } }) => {
+    return {
+      headerLeft: (
+        <Button transparent onPress={() => dismiss()}>
+          <Text>cancel</Text>
+        </Button>
+      )
+    }
+  }
   render() {
-    return (
-      <View>
-        <Text>Forgot password screen</Text>
-      </View>
-    )
+    return <ForgotPasswordForm {...this.props} />
   }
 }
 

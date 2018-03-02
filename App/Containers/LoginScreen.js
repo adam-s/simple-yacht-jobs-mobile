@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavigationActions } from 'react-navigation';
 
-import { View, Text, Button } from 'native-base';
+import { Text, Button } from 'native-base';
+import LoginForm from '../Components/LoginForm';
 
 class LoginScreen extends React.Component {
   static navigationOptions = ({ navigation: { dismiss } }) => {
     return {
       headerLeft: (
-        <Button onPress={() => dismiss()}>
+        <Button transparent onPress={() => dismiss()}>
           <Text>cancel</Text>
         </Button>
       )
@@ -15,11 +16,7 @@ class LoginScreen extends React.Component {
   }
 
   render() {
-    return (
-      <View>
-        <Text>Login screen</Text>
-      </View>
-    )
+    return <LoginForm {...this.props} />
   }
 }
 

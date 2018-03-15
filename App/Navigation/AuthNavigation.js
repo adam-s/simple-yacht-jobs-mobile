@@ -6,5 +6,7 @@ import ForgotPasswordScreen from '../Containers/ForgotPasswordScreen';
 export default DismissableStackNavigator({
   LoginScreen: { screen: LoginScreen },
   CreateAccountScreen: { screen: CreateAccountScreen },
-  ForgotPasswordScreen: { screen: ForgotPasswordScreen }
+  ForgotPasswordScreen: { screen: ForgotPasswordScreen },
+}, {
+  initialRouteName: 'LoginScreen',
 });

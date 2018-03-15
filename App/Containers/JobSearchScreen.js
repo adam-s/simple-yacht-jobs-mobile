@@ -6,12 +6,12 @@ import JobSearchView from '../Components/JobSearchView';
 import JobsActions from '../Redux/JobsRedux';
 
 const propTypes = {
-  navigation: PropTypes.object.isRequired
-}
+  navigation: PropTypes.object.isRequired,
+};
 
 const navigationOptions = {
-  title: 'Search Jobs'
-}
+  title: 'Search Jobs',
+};
 
 class JobSearchScreen extends React.Component {
   componentDidMount() {

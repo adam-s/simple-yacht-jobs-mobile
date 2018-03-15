@@ -14,6 +14,7 @@ import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
 import { crewSagas } from './CrewSagas';
 import { jobsSagas } from './JobsSagas';
+import { authSagas } from './AuthSagas';
 
 /* ------------- API ------------- */
 
@@ -27,6 +28,7 @@ export default function * root () {
   yield all([
     fork(crewSagas),
     fork(jobsSagas),
+    fork(authSagas),
     takeLatest(StartupTypes.STARTUP, startup),
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)
   ])

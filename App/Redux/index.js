@@ -10,31 +10,33 @@ export const reducers = combineReducers({
   github: require('./GithubRedux').reducer,
   search: require('./SearchRedux').reducer,
   crew: require('./CrewRedux').reducer,
-  jobs: require('./JobsRedux').reducer
-})
+  jobs: require('./JobsRedux').reducer,
+  login: require('./LoginRedux').reducer,
+});
 
 export default () => {
   let finalReducers = reducers
   // If rehydration is on use persistReducer otherwise default combineReducers
   if (ReduxPersist.active) {
-    const persistConfig = ReduxPersist.storeConfig
-    finalReducers = persistReducer(persistConfig, reducers)
+    const persistConfig = ReduxPersist.storeConfig;
+    finalReducers = persistReducer(persistConfig, reducers);
   }
 
-  let { store, sagasManager, sagaMiddleware } = configureStore(finalReducers, rootSaga)
+  const storeConfiguration = configureStore(finalReducers, rootSaga);
+  const { store, sagaMiddleware } = storeConfiguration;
+  let { sagasManager } = storeConfiguration;
 
   if (module.hot) {
     module.hot.accept(() => {
-      const nextRootReducer = require('./').reducers
-      store.replaceReducer(nextRootReducer)
+      store.replaceReducer(require('./').reducers);
 
-      const newYieldedSagas = require('../Sagas').default
-      sagasManager.cancel()
+      const newYieldedSagas = require('../Sagas').default;
+      sagasManager.cancel();
       sagasManager.done.then(() => {
-        sagasManager = sagaMiddleware.run(newYieldedSagas)
-      })
-    })
+        sagasManager = sagaMiddleware.run(newYieldedSagas);
+      });
+    });
   }
 
-  return store
+  return store;
 }

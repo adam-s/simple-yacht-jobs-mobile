@@ -8,7 +8,7 @@ import { formatDate } from '../Lib/DateUtils';
 class JobDetailView extends React.Component {
 
   handleLoginPress() {
-    this.props.navigation.navigate('ForgotPasswordScreen');
+    this.props.navigation.navigate('LoginScreen');
   }
 
   render() {

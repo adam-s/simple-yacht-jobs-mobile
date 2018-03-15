@@ -1,19 +1,145 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'native-base';
+import { withFormik } from 'formik';
+import Yup from 'yup';
+import { connectStyle, H1, Content, Form, View, Button, Text } from 'native-base';
+
+import InputGroup from './InputGroup';
+import ValidationErrorModal from './ValidationErrorModal';
 
 class LoginForm extends React.Component {
-  render() {
+  renderLinks() {
+    const { navigation: { navigate }} = this.props;
     return (
       <View>
-        <Text>Login form</Text>
+        <Button
+          transparent
+          dark
+          style={{ flex: 1, alignSelf: 'center' }}
+          onPress={() => navigate('ForgotPasswordScreen')}
+        >
+          <Text>Forgot your password?</Text>
+        </Button>
+        <Button
+          transparent
+          dark
+          style={{ flex: 1, alignSelf: 'center' }}
+          onPress={() => navigate('CreateAccountScreen')}
+        >
+          <Text>Need a new account?</Text>
+        </Button>
       </View>
-    )
+    );
+  }
+
+  render() {
+    const {
+      style,
+      errors,
+      values,
+      setFieldTouched,
+      setFieldValue,
+      handleSubmit,
+      isSubmitting,
+      touched,
+    } = this.props;
+    return (
+      <Content>
+        <H1 style={{ flex: 1, alignSelf: 'center', marginTop: 30 }}>Login</H1>
+        <Form>
+          <InputGroup
+            required
+            label="Email"
+            help="Type in your email"
+            type="email"
+            name="email"
+            value={values.email}
+            error={errors.email}
+            touched={!!touched.email}
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+          />
+          <InputGroup
+            required
+            label="Password"
+            help="Type in your password"
+            type="password"
+            name="password"
+            error={errors.password}
+            value={values.password}
+            touched={!!touched.password}
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+          />
+        </Form>
+        <Button
+          block
+          full
+          title="Login"
+          style={style.button}
+          onPress={handleSubmit}
+          disabled={isSubmitting}
+        >
+          <Text>Login</Text>
+        </Button>
+        { this.renderLinks() }
+        <ValidationErrorModal />
+      </Content>
+    );
   }
 }
 
+LoginForm.defaultProps = {
+  errors: null,
+  values: null,
+  touched: {},
+};
+
 LoginForm.propTypes = {
+  style: PropTypes.object.isRequired,
+  errors: PropTypes.object,
+  values: PropTypes.object,
+  touched: PropTypes.object,
+  handleSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  setFieldValue: PropTypes.func.isRequired,
+  setFieldTouched: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
+};
 
-}
+const emailValidation = Yup
+  .string()
+  .email('Invalid email address!')
+  .required('Email is required!');
 
-export default LoginForm;
+const passwordValidation = Yup
+  .string()
+  .required('Password is required!');
+
+const validationSchema = Yup.object().shape({
+  email: emailValidation,
+  password: passwordValidation,
+});
+
+const LoginFormWithFormik = withFormik({
+  mapPropsToValues: () => ({ email: '', password: '' }),
+  validationSchema,
+  async handleSubmit(values, {
+    setErrors, resetForm, props, setSubmitting,
+  }) {
+    // should be props.login({ email, password });
+    setSubmitting(false);
+    const response = props.login(values);
+
+    // If response.problem === "CLIENT_ERROR" pass data to errormodal
+  },
+})(LoginForm);
+
+const styles = {
+  button: {
+    margin: 10,
+    marginTop: 30,
+  },
+};
+
+export default connectStyle('NativeBase.LoginForm', styles)(LoginFormWithFormik);

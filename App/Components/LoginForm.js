@@ -42,6 +42,8 @@ class LoginForm extends React.Component {
       handleSubmit,
       isSubmitting,
       touched,
+      requestErrors,
+      clearRequestErrors,
     } = this.props;
     return (
       <Content>
@@ -83,7 +85,15 @@ class LoginForm extends React.Component {
           <Text>Login</Text>
         </Button>
         { this.renderLinks() }
-        <ValidationErrorModal />
+        { requestErrors
+          && requestErrors.message
+          && (
+          <ValidationErrorModal
+            errors={requestErrors}
+            clearRequestErrors={clearRequestErrors}
+          />
+          )
+        }
       </Content>
     );
   }
@@ -105,6 +115,8 @@ LoginForm.propTypes = {
   setFieldValue: PropTypes.func.isRequired,
   setFieldTouched: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
+  requestErrors: PropTypes.object.isRequired,
+  clearRequestErrors: PropTypes.func.isRequired,
 };
 
 const emailValidation = Yup

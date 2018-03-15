@@ -8,13 +8,22 @@ const authApi = AuthApi.create();
 function* login(credentials) {
   try {
     const response = yield authApi.login(credentials);
-    yield put({
-      type: LoginTypes.LOGIN_SUCCESS,
-      response,
-    });
+    console.log('response', response);
+    if (response.ok) {
+      yield put({
+        type: LoginTypes.LOGIN_SUCCESS,
+        response,
+      });
+    } else {
+      yield put({
+        type: LoginTypes.LOGIN_FAILURE,
+        error: response.data,
+      });
+    }
   } catch (error) {
+    console.log('error', error);
     yield put({
-      type: LoginTypes.LOGIN_ERROR,
+      type: LoginTypes.LOGIN_FAILURE,
       error,
     });
   }

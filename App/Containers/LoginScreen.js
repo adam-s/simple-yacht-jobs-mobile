@@ -44,13 +44,14 @@ LoginScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    errors: state.login.errors,
+    requestErrors: state.login.requestErrors,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     login: credentials => dispatch(LoginActions.loginRequest(credentials)),
+    clearRequestErrors: () => dispatch(LoginActions.loginClearRequestErrors()),
   };
 };
 

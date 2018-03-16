@@ -1,34 +1,35 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { NavigationActions } from 'react-navigation';
 
 import AuthApi from '../Services/AuthApi';
-import LoginActions, { LoginTypes } from '../Redux/LoginRedux';
+import AuthActions, { AuthTypes } from '../Redux/AuthRedux';
 
 const authApi = AuthApi.create();
 
-function* login(credentials) {
+function* login({ payload }) {
   try {
-    const response = yield authApi.login(credentials);
-    console.log('response', response);
+    const response = yield authApi.login(payload);
     if (response.ok) {
       yield put({
-        type: LoginTypes.LOGIN_SUCCESS,
-        response,
+        type: AuthTypes.LOGIN_SUCCESS,
+        user: response.data,
       });
+      // Have an action to redirect after login
+      yield put(NavigationActions.navigate({ routeName: 'Profile' }));
     } else {
       yield put({
-        type: LoginTypes.LOGIN_FAILURE,
+        type: AuthTypes.LOGIN_FAILURE,
         error: response.data,
       });
     }
   } catch (error) {
-    console.log('error', error);
     yield put({
-      type: LoginTypes.LOGIN_FAILURE,
+      type: AuthTypes.LOGIN_FAILURE,
       error,
     });
   }
 }
 
 export function* authSagas() {
-  yield takeLatest(LoginTypes.LOGIN_REQUEST, login);
+  yield takeLatest(AuthTypes.LOGIN_REQUEST, login);
 }

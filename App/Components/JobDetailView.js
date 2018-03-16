@@ -6,11 +6,6 @@ import { formatLocationString } from '../Lib/LocationUtils';
 import { formatDate } from '../Lib/DateUtils';
 
 class JobDetailView extends React.Component {
-
-  handleLoginPress() {
-    this.props.navigation.navigate('LoginScreen');
-  }
-
   render() {
     const { navigation, style } = this.props
     const { record } = navigation.state.params;
@@ -18,7 +13,6 @@ class JobDetailView extends React.Component {
 
     return (
       <Content backgroundWhite>
-        <Button onPress={() => this.handleLoginPress()}><Text>Login</Text></Button>
         <View style={style.titleContainer}>
           <H3 style={style.titleText}>{capitalizeFirstLetter(title)}</H3>
           <Text>{formatLocationString(location)}</Text>

@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
-import { persistReducer } from 'redux-persist'
-import configureStore from './CreateStore'
-import rootSaga from '../Sagas/'
-import ReduxPersist from '../Config/ReduxPersist'
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import configureStore from './CreateStore';
+import rootSaga from '../Sagas/';
+import ReduxPersist from '../Config/ReduxPersist';
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
@@ -11,7 +11,7 @@ export const reducers = combineReducers({
   search: require('./SearchRedux').reducer,
   crew: require('./CrewRedux').reducer,
   jobs: require('./JobsRedux').reducer,
-  login: require('./LoginRedux').reducer,
+  auth: require('./AuthRedux').reducer,
 });
 
 export default () => {
@@ -39,4 +39,4 @@ export default () => {
   }
 
   return store;
-}
+};

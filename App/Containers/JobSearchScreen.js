@@ -28,21 +28,19 @@ class JobSearchScreen extends React.Component {
 JobSearchScreen.propTypes = propTypes;
 JobSearchScreen.navigationOptions = navigationOptions;
 
-const mapStateToProps = (state) => {
-  return {
-    records: state.jobs.records,
-    metadata: state.jobs.metadata,
-    fetching: state.jobs.fetching,
-    error: state.jobs.error
-  }
-}
+const mapStateToProps = state => ({
+  records: state.jobs.records,
+  metadata: state.jobs.metadata,
+  fetching: state.jobs.fetching,
+  error: state.jobs.error,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchJobsIndex: () => {
-      return dispatch(JobsActions.jobsIndexRequest())
-    }
-  }
-}
+      return dispatch(JobsActions.jobsIndexRequest());
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(JobSearchScreen);

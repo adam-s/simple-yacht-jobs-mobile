@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Text, Button, Icon } from 'native-base';
 
 import LoginForm from '../Components/LoginForm';
-import LoginActions from '../Redux/LoginRedux';
+import AuthActions from '../Redux/AuthRedux';
 
 class LoginScreen extends React.Component {
   static navigationOptions({ navigation }) {
@@ -44,14 +44,14 @@ LoginScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    requestErrors: state.login.requestErrors,
+    requestErrors: state.auth.requestErrors,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: credentials => dispatch(LoginActions.loginRequest(credentials)),
-    clearRequestErrors: () => dispatch(LoginActions.loginClearRequestErrors()),
+    login: (values) => dispatch(AuthActions.loginRequest(values)),
+    clearRequestErrors: () => dispatch(AuthActions.authClearRequestErrors()),
   };
 };
 

@@ -67,6 +67,7 @@ class LoginForm extends React.Component {
             help="Type in your password"
             type="password"
             name="password"
+            secureTextEntry
             error={errors.password}
             value={values.password}
             touched={!!touched.password}
@@ -134,14 +135,14 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginFormWithFormik = withFormik({
-  mapPropsToValues: () => ({ email: '', password: '' }),
+  mapPropsToValues: () => ({ email: 'admin@simpleyachtjobs.com', password: '' }),
   validationSchema,
   async handleSubmit(values, {
     setErrors, resetForm, props, setSubmitting,
   }) {
     // should be props.login({ email, password });
+    await props.login(values);
     setSubmitting(false);
-    const response = props.login(values);
 
     // If response.problem === "CLIENT_ERROR" pass data to errormodal
   },

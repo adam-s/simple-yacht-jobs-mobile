@@ -28,6 +28,7 @@
     "format-json": "^1.0.3",
     "formik": "^0.11.11",
     "identity-obj-proxy": "^3.0.0",
+    "idx": "^2.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "native-base": "^2.3.10",

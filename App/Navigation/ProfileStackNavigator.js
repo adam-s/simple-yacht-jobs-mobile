@@ -1,13 +1,11 @@
 import { StackNavigator } from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/lib/views/CardStackStyleInterpolator';
 
-import JobDetailScreen from '../Containers/JobDetailScreen';
-import JobSearchScreen from '../Containers/JobSearchScreen';
+import ProfileScreen from '../Containers/ProfileScreen';
 
 export default StackNavigator(
   {
-    JobSearchScreen: { screen: JobSearchScreen },
-    JobDetailScreen: { screen: JobDetailScreen },
+    ProfileScreen: { screen: ProfileScreen },
   },
   {
     transitionConfig: () => ({

@@ -4,15 +4,14 @@ import CardStackStyleInterpolator from 'react-navigation/lib/views/CardStackStyl
 import ResumeDetailScreen from '../Containers/ResumeDetailScreen';
 import ResumeSearchScreen from '../Containers/ResumeSearchScreen';
 
-export default StackNavigator({
+export default StackNavigator(
+  {
     ResumeSearchScreen: { screen: ResumeSearchScreen },
-    ResumeDetailScreen: { screen: ResumeDetailScreen }
+    ResumeDetailScreen: { screen: ResumeDetailScreen },
   },
   {
     transitionConfig: () => ({
-      screenInterpolator: sceneProps => {
-        return CardStackStyleInterpolator.forHorizontal(sceneProps);
-      }
-    })
-  }
-)
+      screenInterpolator: sceneProps => CardStackStyleInterpolator.forHorizontal(sceneProps),
+    }),
+  },
+);

@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable';
 const { Types, Creators } = createActions({
   jobsIndexRequest: null,
   jobsIndexSuccess: ['jobs'],
-  jobsIndexFailure: ['error']
+  jobsIndexFailure: ['error'],
 });
 
 export const JobsTypes = Types;
@@ -14,23 +14,27 @@ export const INITIAL_STATE = Immutable({
   records: [],
   metadata: {},
   error: null,
-  fetching: false
+  fetching: false,
 });
 
 // Reducers
-export const jobsIndexRequest = (state) => state.merge({ fetching: true });
+const jobsIndexRequest = state => state.merge({ fetching: true });
 
-export const jobsIndexSuccess = (state, { records, metadata }) => {
-  return state.merge({ fetching: false, error: null, records, metadata });
-}
+const jobsIndexSuccess = (state, { records, metadata }) =>
+  state.merge({
+    fetching: false,
+    error: null,
+    records,
+    metadata,
+  });
 
-export const jobsIndexFailure = (state, { error }) =>
+const jobsIndexFailure = (state, { error }) =>
   state.merge({ fetching: false, error });
 
 // Create reduce
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.JOBS_INDEX_REQUEST]: jobsIndexRequest,
   [Types.JOBS_INDEX_SUCCESS]: jobsIndexSuccess,
-  [Types.JOBS_INDEX_FAILURE]: jobsIndexFailure
-})
+  [Types.JOBS_INDEX_FAILURE]: jobsIndexFailure,
+});
 

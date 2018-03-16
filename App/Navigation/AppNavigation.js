@@ -7,7 +7,7 @@ const AppNavigation = StackNavigator({
   AuthNavigation: { screen: AuthNavigation },
   PrimaryNavigation: { screen: PrimaryNavigation },
 }, {
-  initialRouteName: 'AuthNavigation',
+  initialRouteName: 'PrimaryNavigation',
   headerMode: 'none',
   mode: 'modal',
 });

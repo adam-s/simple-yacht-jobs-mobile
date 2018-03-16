@@ -13,6 +13,7 @@ class InputGroup extends React.Component {
       required,
       setFieldValue,
       setFieldTouched,
+      secureTextEntry,
     } = this.props;
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -21,6 +22,7 @@ class InputGroup extends React.Component {
             style={style.input}
             type={type}
             name={name}
+            secureTextEntry={secureTextEntry}
             onChangeText={text => setFieldValue(name, text)}
             onBlur={text => setFieldTouched(name, text)}
             value={value}
@@ -74,6 +76,7 @@ InputGroup.defaultProps = {
   required: false,
   type: 'text',
   value: null,
+  secureTextEntry: false,
   error: null,
   touched: false,
 };
@@ -86,6 +89,7 @@ InputGroup.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
+  secureTextEntry: PropTypes.bool,
   setFieldValue: PropTypes.func.isRequired,
   setFieldTouched: PropTypes.func.isRequired,
   error: PropTypes.string,

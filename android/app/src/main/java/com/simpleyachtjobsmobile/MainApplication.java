@@ -3,6 +3,7 @@ package com.simpleyachtjobsmobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.psykar.cookiemanager.CookieManagerPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -28,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new ReactNativeConfigPackage(),
             new VectorIconsPackage(),
-            new RNDeviceInfo()
+            new RNDeviceInfo(),
+            new CookieManagerPackage()
       );
     }
 

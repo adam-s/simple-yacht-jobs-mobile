@@ -9,6 +9,7 @@ const authApi = AuthApi.create();
 function* login({ payload }) {
   try {
     const response = yield authApi.login(payload);
+    debugger;
     if (response.ok) {
       yield put({
         type: AuthTypes.LOGIN_SUCCESS,

@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
       setFieldTouched,
       setFieldValue,
       handleSubmit,
-      isSubmitting,
+      fetching,
       touched,
       requestErrors,
       clearRequestErrors,
@@ -75,13 +75,14 @@ class LoginForm extends React.Component {
             setFieldTouched={setFieldTouched}
           />
         </Form>
+        <Text>{fetching}</Text>
         <Button
           block
           full
           title="Login"
           style={style.button}
           onPress={handleSubmit}
-          disabled={isSubmitting}
+          disabled={fetching}
         >
           <Text>Login</Text>
         </Button>
@@ -112,7 +113,7 @@ LoginForm.propTypes = {
   values: PropTypes.object,
   touched: PropTypes.object,
   handleSubmit: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool.isRequired,
   setFieldValue: PropTypes.func.isRequired,
   setFieldTouched: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
@@ -137,14 +138,8 @@ const validationSchema = Yup.object().shape({
 const LoginFormWithFormik = withFormik({
   mapPropsToValues: () => ({ email: 'admin@simpleyachtjobs.com', password: '' }),
   validationSchema,
-  async handleSubmit(values, {
-    setErrors, resetForm, props, setSubmitting,
-  }) {
-    // should be props.login({ email, password });
-    await props.login(values);
-    setSubmitting(false);
-
-    // If response.problem === "CLIENT_ERROR" pass data to errormodal
+  handleSubmit(values, { props }) {
+    props.login(values);
   },
 })(LoginForm);
 

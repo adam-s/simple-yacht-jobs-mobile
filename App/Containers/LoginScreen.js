@@ -45,6 +45,7 @@ LoginScreen.propTypes = {
 const mapStateToProps = (state) => {
   return {
     requestErrors: state.auth.requestErrors,
+    fetching: state.auth.fetching,
   };
 };
 

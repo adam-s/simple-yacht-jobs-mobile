@@ -20,14 +20,8 @@ class ProfileView extends React.Component {
     this.props.logout();
   }
 
-  componentDidUpdate(nextProps) {
-    console.log('this props', this.props);
-    console.log('asdas', nextProps);
-  }
-
   render() {
     const { navigation, isAuthenticated } = this.props;
-    console.log('authenticated', isAuthenticated)
     return (
       <Content backgroundWhite>
         {isAuthenticated

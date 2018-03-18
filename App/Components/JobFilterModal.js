@@ -5,18 +5,8 @@ import { TouchableOpacity } from 'react-native';
 import { connectStyle, View, Text } from 'native-base';
 
 class JobFilterModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: true,
-    };
-  }
-  handleClose() {
-    this.setState({ isVisible: false });
-  }
   render() {
-    const { style } = this.props;
-    const { isVisible } = this.state;
+    const { style, isVisible } = this.props;
     return (
       <Modal
         style={style.modal}
@@ -41,6 +31,7 @@ class JobFilterModal extends React.Component {
 
 JobFilterModal.propTypes = {
   style: PropTypes.object.isRequired,
+  isVisible: PropTypes.bool.isRequired,
 };
 
 const styles = {

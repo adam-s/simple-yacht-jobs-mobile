@@ -53,7 +53,6 @@ export const userRoles = state => state.auth && state.auth.user && state.auth.us
 export const isAuthenticated = createSelector(
   userRoles,
   (roles) => {
-    console.log('roles', roles)
     return Array.isArray(roles) && roles.includes(ROLE_AUTHENTICATED);
   },
 );

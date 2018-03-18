@@ -12,15 +12,17 @@ const defaultProps = {
 const propTypes = {
   navigation: PropTypes.object.isRequired,
   records: PropTypes.array,
+  filterModalIsVisible: PropTypes.bool.isRequired,
 };
 
 class JobSearchView extends React.Component {
   render() {
-    const { records, navigation } = this.props;
+    const { records, navigation, filterModalIsVisible } = this.props;
+    console.log('isVisible', filterModalIsVisible);
     return (
       <Content backgroundWhite>
         <JobList records={records} navigation={navigation} />
-        <JobFilterModal />
+        <JobFilterModal isVisible={filterModalIsVisible} />
       </Content>
     );
   }

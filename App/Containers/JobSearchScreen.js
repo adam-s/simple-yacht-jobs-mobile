@@ -14,7 +14,7 @@ class JobSearchScreen extends React.Component {
       headerRight: (
         <Button
           transparent
-          onPress={params.toggleFilterModal}
+          onPress={params.toggleFilter}
           title="Filter"
         >
           <Text>Filter</Text>
@@ -26,30 +26,34 @@ class JobSearchScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterModalIsVisible: false,
+      filterIsVisible: false,
     };
 
-    this.toggleFilterModal = this.toggleFilterModal.bind(this);
+    this.toggleFilter = this.toggleFilter.bind(this);
   }
 
   // A hack to pass instance methods to the static navigationOptions
   componentWillMount() {
-    this.props.navigation.setParams({ toggleFilterModal: this.toggleFilterModal });
+    this.props.navigation.setParams({ toggleFilter: this.toggleFilter });
   }
 
   componentDidMount() {
     this.props.fetchJobsIndex();
   }
 
-  toggleFilterModal() {
-    const { filterModalIsVisible } = this.state;
-    this.setState({ filterModalIsVisible: !filterModalIsVisible });
+  toggleFilter() {
+    const { filterIsVisible } = this.state;
+    this.setState({ filterIsVisible: !filterIsVisible });
   }
 
   render() {
-    const { filterModalIsVisible } = this.state;
+    const { filterIsVisible } = this.state;
     return (
-      <JobSearchView {...this.props} filterModalIsVisible={filterModalIsVisible} />
+      <JobSearchView
+        {...this.props}
+        filterIsVisible={filterIsVisible}
+        toggleFilter={this.toggleFilter}
+      />
     );
   }
 }

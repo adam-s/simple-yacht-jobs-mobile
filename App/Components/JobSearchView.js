@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Content } from 'native-base';
+import { Content, View } from 'native-base';
 
 import JobList from './JobList';
-import JobFilterModal from './JobFilterModal';
+import JobSearchFilter from './JobSearchFilter';
 
 const defaultProps = {
   records: [],
@@ -12,18 +12,20 @@ const defaultProps = {
 const propTypes = {
   navigation: PropTypes.object.isRequired,
   records: PropTypes.array,
-  filterModalIsVisible: PropTypes.bool.isRequired,
+  filterIsVisible: PropTypes.bool.isRequired,
+  toggleFilter: PropTypes.func.isRequired,
 };
 
 class JobSearchView extends React.Component {
   render() {
-    const { records, navigation, filterModalIsVisible } = this.props;
-    console.log('isVisible', filterModalIsVisible);
+    const { records, navigation, filterIsVisible, toggleFilter } = this.props;
     return (
-      <Content backgroundWhite>
-        <JobList records={records} navigation={navigation} />
-        <JobFilterModal isVisible={filterModalIsVisible} />
-      </Content>
+      <View style={{ flex: 1 }}>
+        <Content scrollEnabled={!filterIsVisible} backgroundWhite>
+          <JobList records={records} navigation={navigation} />
+        </Content>
+        {filterIsVisible && <JobSearchFilter toggleFilter={toggleFilter} />}
+      </View>
     );
   }
 }

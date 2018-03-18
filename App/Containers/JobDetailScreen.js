@@ -1,18 +1,10 @@
 import React from 'react';
 
-import JobDetailView from '../Components/JobDetailView.js';
-import JobsActions from '../Redux/JobsRedux';
+import JobDetailView from '../Components/JobDetailView';
 
-const navigationOptions = ({ navigation }) => {
-  return {
-    title: 'Job Detail'
-  }
-}
+const navigationOptions = () => ({ title: 'Job Detail' });
 
 class JobDetailScreen extends React.Component {
-  componentWillMount() {
-    const { record } = this.props.navigation.state.params;
-  }
   render() {
     return (
       <JobDetailView {...this.props} />

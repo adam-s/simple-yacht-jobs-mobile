@@ -7,10 +7,14 @@ import JobsActions from '../Redux/JobsRedux';
 
 const propTypes = {
   navigation: PropTypes.object.isRequired,
+  fetchJobsIndex: PropTypes.func.isRequired,
 };
 
-const navigationOptions = {
-  title: 'Search Jobs',
+const navigationOptions = (navigation) => {
+  console.log(navigation);
+  return {
+    headerTitle: 'Search jobs',
+  };
 };
 
 class JobSearchScreen extends React.Component {

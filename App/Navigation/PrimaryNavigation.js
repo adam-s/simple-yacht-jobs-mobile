@@ -51,7 +51,7 @@ const PrimaryNav = TabNavigator({
   animationEnabled: true,
   swipeEnabled: false,
   headerMode: 'none',
-  initialRouteName: 'Profile',
+  initialRouteName: 'Jobs',
   tabBarOptions: {
     activeTintColor: 'tomato',
     inactiveTintColor: 'grey',

@@ -1,6 +1,6 @@
 import Secrets from 'react-native-config';
 import apisauce from 'apisauce';
-import CookieManager from 'react-native-cookies';
+// import CookieManager from 'react-native-cookies';
 
 const create = async (baseURL = Secrets.API_URL) => {
   const api = apisauce.create({
@@ -16,17 +16,17 @@ const create = async (baseURL = Secrets.API_URL) => {
     },
   });
 
-  const cookies = await CookieManager.get(baseURL);
+  // const cookies = await CookieManager.get(baseURL);
 
-  console.log('cookies', cookies);
+  // console.log('cookies', cookies);
 
-  api.addResponseTransform((response) => {
-    console.log(response);
-  });
+  // api.addResponseTransform((response) => {
+  //   console.log(response);
+  // });
 
-  api.addRequestTransform((request) => {
-    console.log(request);
-  });
+  // api.addRequestTransform((request) => {
+  //   console.log(request);
+  // });
 
   const login = credentials => api.post('auth/login', credentials);
 

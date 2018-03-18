@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Content } from 'native-base';
 
 import JobList from './JobList';
+import JobFilterModal from './JobFilterModal';
 
 const defaultProps = {
   records: [],
@@ -19,6 +20,7 @@ class JobSearchView extends React.Component {
     return (
       <Content backgroundWhite>
         <JobList records={records} navigation={navigation} />
+        <JobFilterModal />
       </Content>
     );
   }

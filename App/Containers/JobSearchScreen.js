@@ -23,37 +23,19 @@ class JobSearchScreen extends React.Component {
     };
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      filterIsVisible: false,
-    };
-
-    this.toggleFilter = this.toggleFilter.bind(this);
-  }
-
   // A hack to pass instance methods to the static navigationOptions
   componentWillMount() {
-    this.props.navigation.setParams({ toggleFilter: this.toggleFilter });
+    const { toggleFilter } = this.props;
+    this.props.navigation.setParams({ toggleFilter });
   }
 
   componentDidMount() {
     this.props.fetchJobsIndex();
   }
 
-  toggleFilter() {
-    const { filterIsVisible } = this.state;
-    this.setState({ filterIsVisible: !filterIsVisible });
-  }
-
   render() {
-    const { filterIsVisible } = this.state;
     return (
-      <JobSearchView
-        {...this.props}
-        filterIsVisible={filterIsVisible}
-        toggleFilter={this.toggleFilter}
-      />
+      <JobSearchView {...this.props} />
     );
   }
 }
@@ -61,6 +43,17 @@ class JobSearchScreen extends React.Component {
 const propTypes = {
   navigation: PropTypes.object.isRequired,
   fetchJobsIndex: PropTypes.func.isRequired,
+  toggleFilter: PropTypes.func.isRequired,
+  filterIsVisible: PropTypes.bool.isRequired,
+  tableState: PropTypes.shape({
+    jobType: PropTypes.string,
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+    name: PropTypes.string,
+    position: PropTypes.string,
+    type: PropTypes.string,
+  }).isRequired,
+  updateTableState: PropTypes.func.isRequired,
 };
 
 JobSearchScreen.propTypes = propTypes;
@@ -70,13 +63,16 @@ const mapStateToProps = state => ({
   metadata: state.jobs.metadata,
   fetching: state.jobs.fetching,
   error: state.jobs.error,
+  tableState: state.jobs.tableState,
+  filterIsVisible: state.jobs.filterIsVisible,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchJobsIndex: () => {
-      return dispatch(JobsActions.jobsIndexRequest());
-    },
+    fetchJobsIndex: () => dispatch(JobsActions.jobsIndexRequest()),
+    updateTableState: tableState =>
+      dispatch(JobsActions.jobsUpdateTableState(tableState)),
+    toggleFilter: () => dispatch(JobsActions.jobsToggleFilter()),
   };
 };
 

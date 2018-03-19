@@ -6,29 +6,23 @@ import { connectStyle, Content, View, Text, Button } from 'native-base';
 class JobSearchFilter extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      name: null,
-      type: null,
-      position: null,
-      jobType: null,
-      latitude: null,
-      longitude: null,
-    };
-
     this.updateLocation = this.updateLocation.bind(this);
+    console.log('tableState', this.props.tableState);
   }
 
+  // Although using the screen we can use connect to directly update the store,
+  // I'm going to treat the form control modals like they are part of the parent
+  // and pass props and dispatch function through the navigation hack.
+  // It should be obvious after people see a few times.
   handlePressChange() {
     const { navigation: { navigate } } = this.props;
     navigate('PlacesAutocompleteScreen', { updateLocation: this.updateLocation });
   }
 
   updateLocation(values) {
-    this.setState({ ...values });
-
-    console.log('values', values);
-    console.log('state', this.state);
+    // This is where the dispatch action to update tableState happens.
+    const { updateTableState } = this.props;
+    updateTableState(values);
   }
 
   render() {
@@ -61,6 +55,15 @@ JobSearchFilter.propTypes = {
   style: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
+  tableState: PropTypes.shape({
+    jobType: PropTypes.string,
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+    name: PropTypes.string,
+    position: PropTypes.string,
+    type: PropTypes.string,
+  }).isRequired,
+  updateTableState: PropTypes.func.isRequired,
 };
 
 const window = Dimensions.get('window');

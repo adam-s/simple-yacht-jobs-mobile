@@ -1,12 +1,14 @@
 import { StackNavigator } from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/lib/views/CardStackStyleInterpolator';
 
+import JobSearchScreen from '../Containers/JobSearchScreen';
+import PlacesAutocompleteScreen from '../Containers/PlacesAutocompleteScreen';
 import JobDetailScreen from '../Containers/JobDetailScreen';
-import JobStackNavigator from './JobSearchStackNavigator';
 
 export default StackNavigator(
   {
-    JobSearchScreen: { screen: JobStackNavigator },
+    JobSearchScreen: { screen: JobSearchScreen },
+    PlacesAutocompleteScreen: { screen: PlacesAutocompleteScreen},
     JobDetailScreen: { screen: JobDetailScreen },
   },
   {

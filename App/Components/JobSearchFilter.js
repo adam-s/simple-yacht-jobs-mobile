@@ -1,10 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Dimensions } from 'react-native';
-import { connectStyle, Content, View, Text } from 'native-base';
+import { connectStyle, Content, View, Text, Button } from 'native-base';
 
 class JobSearchFilter extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      name: null,
+      type: null,
+      position: null,
+      jobType: null,
+      latitude: null,
+      longitude: null,
+    };
+
+    this.updateLocation = this.updateLocation.bind(this);
+  }
+
+  handlePressChange() {
+    const { navigation: { navigate } } = this.props;
+    navigate('PlacesAutocompleteScreen', { updateLocation: this.updateLocation });
+  }
+
+  updateLocation(values) {
+    this.setState({ ...values });
+
+    console.log('values', values);
+    console.log('state', this.state);
+  }
 
   render() {
     const { style, toggleFilter } = this.props;
@@ -14,6 +39,12 @@ class JobSearchFilter extends React.Component {
           <Content style={style.filterContainer}>
             <View>
               <Text>Filters go here</Text>
+              <Button
+                title="Change"
+                onPress={() => this.handlePressChange()}
+              >
+                <Text>Change</Text>
+              </Button>
             </View>
           </Content>
           <TouchableOpacity
@@ -29,6 +60,7 @@ class JobSearchFilter extends React.Component {
 JobSearchFilter.propTypes = {
   style: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
 };
 
 const window = Dimensions.get('window');

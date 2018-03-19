@@ -24,7 +24,12 @@ class JobSearchView extends React.Component {
         <Content scrollEnabled={!filterIsVisible} backgroundWhite>
           <JobList records={records} navigation={navigation} />
         </Content>
-        {filterIsVisible && <JobSearchFilter toggleFilter={toggleFilter} />}
+        {filterIsVisible &&
+          <JobSearchFilter
+            toggleFilter={toggleFilter}
+            navigation={navigation}
+          />
+        }
       </View>
     );
   }

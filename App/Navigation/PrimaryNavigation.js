@@ -38,7 +38,7 @@ const PrimaryNav = TabNavigator({
       } else if (routeName === 'Resumes') {
         iconName = `ios-paper${focused ? '' : '-outline'}`;
       } else if (routeName === 'Profile') {
-        iconName = `ios-paper${focused ? '' : '-outline'}`;
+        iconName = `ios-person${focused ? '' : '-outline'}`;
       }
 
       // You can return any component that you like here! We usually use an

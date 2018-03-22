@@ -34,6 +34,8 @@
     "native-base": "^2.3.10",
     "normalizr": "^3.2.4",
     "prop-types": "15.6.0",
+    "qs": "^6.5.1",
+    "query-string": "^6.0.0",
     "querystringify": "1.0.0",
     "ramda": "^0.25.0",
     "react": "16.0.0",

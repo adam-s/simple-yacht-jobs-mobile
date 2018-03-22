@@ -7,7 +7,6 @@ class JobSearchFilter extends React.Component {
   constructor(props) {
     super(props);
     this.updateLocation = this.updateLocation.bind(this);
-    console.log('tableState', this.props.tableState);
   }
 
   // Although using the screen we can use connect to directly update the store,
@@ -21,32 +20,34 @@ class JobSearchFilter extends React.Component {
 
   updateLocation(values) {
     // This is where the dispatch action to update tableState happens.
-    const { updateTableState } = this.props;
-    updateTableState(values);
+    const { updateTempTableState } = this.props;
+    updateTempTableState(values);
   }
 
   render() {
-    const { style, toggleFilter } = this.props;
+    const { style, toggleFilter, filterIsVisible } = this.props;
     return (
-      <View style={style.container}>
-        <View style={{ flex: 1 }}>
-          <Content style={style.filterContainer}>
-            <View>
-              <Text>Filters go here</Text>
-              <Button
-                title="Change"
-                onPress={() => this.handlePressChange()}
-              >
-                <Text>Change</Text>
-              </Button>
-            </View>
-          </Content>
-          <TouchableOpacity
-            style={style.bottomContainer}
-            onPress={() => toggleFilter()}
-          />
+      filterIsVisible ?
+        <View style={style.container}>
+          <View style={{ flex: 1 }}>
+            <Content style={style.filterContainer}>
+              <View>
+                <Text>Filters go here</Text>
+                <Button
+                  title="Change"
+                  onPress={() => this.handlePressChange()}
+                >
+                  <Text>Change</Text>
+                </Button>
+              </View>
+            </Content>
+            <TouchableOpacity
+              style={style.bottomContainer}
+              onPress={() => toggleFilter()}
+            />
+          </View>
         </View>
-      </View>
+        : null
     );
   }
 }
@@ -55,7 +56,7 @@ JobSearchFilter.propTypes = {
   style: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
-  tableState: PropTypes.shape({
+  tempTableState: PropTypes.shape({
     jobType: PropTypes.string,
     latitude: PropTypes.number,
     longitude: PropTypes.number,
@@ -63,7 +64,8 @@ JobSearchFilter.propTypes = {
     position: PropTypes.string,
     type: PropTypes.string,
   }).isRequired,
-  updateTableState: PropTypes.func.isRequired,
+  updateTempTableState: PropTypes.func.isRequired,
+  filterIsVisible: PropTypes.bool.isRequired,
 };
 
 const window = Dimensions.get('window');

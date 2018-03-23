@@ -15,8 +15,8 @@ export default Creators;
 
 const tableStateDefault = {
   jobType: '',
-  latitude: 39,
-  longitude: 2,
+  latitude: 26.112,
+  longitude: -80.1373,
   name: 'Fort Lauderdale, FL, USA',
   position: '',
   type: '',
@@ -66,4 +66,3 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.JOBS_UPDATE_TEMP_TABLE_STATE]: jobsUpdateTempTableState,
   [Types.JOBS_TOGGLE_FILTER]: jobsToggleFilter,
 });
-

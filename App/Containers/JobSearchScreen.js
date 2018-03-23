@@ -39,6 +39,7 @@ class JobSearchScreen extends React.Component {
       filterIsVisible,
       toggleFilter,
       navigation,
+      tableState,
       tempTableState,
       updateTempTableState,
       records,
@@ -49,6 +50,10 @@ class JobSearchScreen extends React.Component {
           navigation={navigation}
           records={records}
           filterIsVisible={filterIsVisible}
+          filterPoint={{
+            latitude: tableState.latitude,
+            longitude: tableState.longitude,
+          }}
         />
         <JobSearchFilter
           filterIsVisible={filterIsVisible}

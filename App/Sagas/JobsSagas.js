@@ -29,6 +29,12 @@ function* fetchJobsIndex() {
       records,
     });
     // Update the tableState value with the tempTableStateValue
+    if (tableStateInfo.dirty) {
+      yield put({
+        type: JobsTypes.JOBS_UPDATE_TABLE_STATE,
+        tableState,
+      });
+    }
   } catch (error) {
     yield put({
       type: JobsTypes.JOBS_INDEX_FAILURE,

@@ -1,7 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Dimensions } from 'react-native';
-import { connectStyle, Content, View, Text, Button } from 'native-base';
+import { connectStyle, Content, View, Text } from 'native-base';
+import MapView, { Circle, Marker } from 'react-native-maps';
+
+import { mapStyle } from '../Lib/LocationUtils';
+
+const { width, height } = Dimensions.get('window');
+
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = 0.0421;
+const MAP_HEIGHT = 180;
+const CIRCLE_RADIUS = 2000;
+const CIRCLE_LATITUDE_OFFSET = 0.005;
 
 class JobSearchFilter extends React.Component {
   constructor(props) {
@@ -24,22 +35,72 @@ class JobSearchFilter extends React.Component {
     updateTempTableState(values);
   }
 
+  renderMapInfoBar() {
+    const { style, tempTableState: { name } } = this.props;
+    return (
+      <View style={style.mapInfoBar}>
+        <Text style={style.mapInfoItem}>{name}</Text>
+        <TouchableOpacity
+          style={style.mapInfoItem}
+          onPress={() => this.handlePressChange()}
+        >
+          <Text>Change</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   render() {
-    const { style, toggleFilter, filterIsVisible } = this.props;
+    const {
+      style,
+      toggleFilter,
+      filterIsVisible,
+      tempTableState: { latitude, longitude },
+    } = this.props;
+
+    const circle = {
+      center: {
+        latitude: latitude + CIRCLE_LATITUDE_OFFSET,
+        longitude,
+      },
+      radius: CIRCLE_RADIUS,
+    };
+
     return (
       filterIsVisible ?
         <View style={style.container}>
           <View style={{ flex: 1 }}>
             <Content style={style.filterContainer}>
               <View>
-                <Text>Filters go here</Text>
-                <Button
-                  title="Change"
-                  onPress={() => this.handlePressChange()}
+                <MapView
+                  style={{ height: MAP_HEIGHT, width }}
+                  region={{
+                    latitude,
+                    longitude,
+                    latitudeDelta: LATITUDE_DELTA,
+                    longitudeDelta: LONGITUDE_DELTA,
+                  }}
+                  customMapStyle={mapStyle}
+                  scrollEnabled={false}
+                  zoomEnabled={false}
+                  pitchEnabled={false}
+                  rotateEnabled={false}
                 >
-                  <Text>Change</Text>
-                </Button>
+                  <Marker coordinate={{ latitude, longitude }} />
+                  <Circle
+                    center={circle.center}
+                    radius={circle.radius}
+                    fillColor="rgba(255, 99, 71, 0.4)"
+                    strokeColor="rgba(0,0,0,0.2)"
+                    zIndex={2}
+                    strokeWidth={2}
+                  />
+                </MapView>
+
+                {this.renderMapInfoBar()}
               </View>
+              <View><Text>Filter controls go here</Text></View>
+              <View><Text>Can put job type filter here</Text></View>
             </Content>
             <TouchableOpacity
               style={style.bottomContainer}
@@ -68,8 +129,6 @@ JobSearchFilter.propTypes = {
   filterIsVisible: PropTypes.bool.isRequired,
 };
 
-const window = Dimensions.get('window');
-
 const styles = {
   container: {
     position: 'absolute',
@@ -78,8 +137,8 @@ const styles = {
     right: 0,
     bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    height: window.height,
-    width: window.width,
+    height,
+    width,
   },
   filterContainer: {
     backgroundColor: 'white',
@@ -87,6 +146,23 @@ const styles = {
   },
   bottomContainer: {
     flexGrow: 3,
+  },
+  mapInfoBar: {
+    width,
+    height: 40,
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    bottom: 0,
+    left: 0,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+  },
+  mapInfoItem: {
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    backgroundColor: 'white',
+    borderRadius: 5,
   },
 };
 

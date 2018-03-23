@@ -10,11 +10,16 @@ class JobSearchView extends React.Component {
       records,
       navigation,
       filterIsVisible,
+      filterPoint,
     } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <Content scrollEnabled={!filterIsVisible} backgroundWhite>
-          <JobList records={records} navigation={navigation} />
+          <JobList
+            records={records}
+            navigation={navigation}
+            filterPoint={filterPoint}
+          />
         </Content>
       </View>
     );
@@ -29,6 +34,10 @@ const propTypes = {
   navigation: PropTypes.object.isRequired,
   records: PropTypes.array,
   filterIsVisible: PropTypes.bool.isRequired,
+  filterPoint: PropTypes.shape({
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+  }).isRequired,
 };
 
 JobSearchView.propTypes = propTypes;
